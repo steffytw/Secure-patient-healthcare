@@ -1,0 +1,187 @@
+{% extends 'secureHealth/basepatient.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-8 offset-lg-2">
+    <h4 class="page-title">Health Record</h4>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-8 offset-lg-2">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% for patient_data in patient_datas %}
+        
+        {% csrf_token %}
+            {{form.errors}}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Name <span class="text-danger">*</span></label>
+                        <input class="form-control" name="name" readonly value="{{patient_data.name}}" type="text">
+                        
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input class="form-control" name="age" readonly value="{{patient_data.age}}" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Blood Group</label>
+                        
+                        <select name="blood_group"   value="{{patient_data.blood_group}}" class="select form-control">
+                            <option value="{{patient_data.blood_group}}" aria-readonly="true" selected>{{patient_data.blood_group}}</option>
+                            <option value="O+ve">O+ve</option>
+                            <option value="O-ve">O-ve</option>
+                            <option value="A+ve">A+ve</option>
+                            <option value="A-ve">A-ve</option>
+                            <option value="B+ve">B+ve</option>
+                            <option value="B-ve">B-ve</option>
+                            <option value="AB+ve">AB+ve</option>
+                            <option value="AB-ve">AB-ve</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" name="username" readonly value="{{patient_data.username}}" type="text">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Phone_number <span class="text-danger">*</span></label>
+                        <input class="form-control" readonly name="phone_number" value="{{patient_data.phone_number}}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Haemoglobin <span class="text-danger">*</span></label>
+                        <input class="form-control" readonly name="haemoglobin" value="{{patient_data.haemoglobin}}" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>WBC</label>
+                        <input class="form-control" name="wbc" readonly value="{{patient_data.wbc}}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Granulocyte</label>
+                        <input class="form-control" name="granulocyte" readonly value="{{patient_data.granulocyte}}" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Neutrophils</label>
+                        <div class="cal-icon">
+                            <input type="text" name="neutrophils" readonly value="{{patient_data.neutrophils}}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Platelet Count</label>
+                        <div class="cal-icon">
+                            <input type="text" name="platelet_Count" readonly value="{{patient_data.platelet_Count}}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Cholestrol</label>
+                        <div class="cal-icon">
+                            <input type="text" name="cholestrol"  readonly value="{{patient_data.cholestrol}}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Triglycerides</label>
+                        <div class="cal-icon">
+                            <input type="text" name="triglycerides" readonly value="{{patient_data.triglycerides}}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>TSH</label>
+                        <div class="cal-icon">
+                            <input type="text" name="tsh" value="{{patient_data.tsh}}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Bilirubin Total</label>
+                        <input class="form-control" readonly name="bilirubin_total" value="{{patient_data.bilirubin_total}}" type="text">
+                    </div>
+                </div>
+            
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Globulins</label>
+                        <input class="form-control" readonly name="globulins" value="{{patient_data.globulins}}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Blood urea</label>
+                        <input class="form-control" readonly name="blood_urea" value="{{patient_data.blood_urea}}" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Albumin</label>
+                        <input class="form-control" readonly name="albumin" value="{{patient_data.albumin}}" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Potassium</label>
+                        <input class="form-control" readonly name="potassium" value="{{patient_data.potassium}}" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Sodium</label>
+                        <input class="form-control" readonly name="sodium" value="{{patient_data.sodium}}" type="text">
+                    </div>
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Message</label>
+                        <input class="form-control" readonly name="message" value="{{patient_data.message}}" type="text">
+                    </div>
+                </div>
+            </div>
+            
+       
+        {% endfor %}
+    </form>
+</div>
+{% endblock %}

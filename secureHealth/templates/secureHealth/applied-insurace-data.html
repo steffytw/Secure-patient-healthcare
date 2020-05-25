@@ -1,0 +1,87 @@
+{% extends 'secureHealth/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-sm-8 col-6">
+    <h4 class="page-title">Applied Insurance Details</h4>
+</div>
+<div class="col-sm-4 col-6 text-right m-b-30">
+    <a href="{% url 'addapplyinsurance' %}" class="btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Apply Insurance</a>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+    <div class="table-responsive">
+        <table class="table table-striped custom-table mb-0 datatable">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Date of birth</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>District</th>
+                    <th>Pincode</th>
+                    <th>Mobile number</th>
+                    <th>Company</th>
+                    <th>Insurance Number</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ai in ap %}
+                <tr>
+                    <td>{{ai.first_name}}</td>
+                    <td>{{ai.last_name}}</td>
+                    <td>{{ai.username}}</td>
+                    <td>{{ai.email}}</td>
+                    <td>{{ai.date_of_birth}}</td>
+                    <td>{{ai.address}}</td>
+                    <td>{{ai.gender}}</td>
+                    <td>{{ai.country}}</td>
+                    <td>{{ai.city}}</td>
+                    <td>{{ai.state}}</td>
+                    <td>{{ai.district}}</td>
+                    <td>{{ai.pincode}}</td>
+                    <td>{{ai.mobile_number}}</td>
+                    <td>{{ai.company}}</td>
+                    <td>{{ai.insurance_number}}</td>
+                    
+        
+                    
+                    <td class="text-center">
+                        {% if ai.status == "new" %}
+                            <span class="custom-badge status-grey">{{ai.status}}</span>
+                        {% elif ai.status == "pending" %}
+                            <span class="custom-badge status-blue">{{ai.status}}</span>
+                        {% elif ai.status == "approved" %}
+                            <span class="custom-badge status-green">{{ai.status}}</span>
+                        {% else %}
+                            <span class="custom-badge status-red">{{ai.status}}</span>
+                        {% endif %}
+                        
+                    </td>
+                    <td class="text-right">
+                        <div class="dropdown dropdown-action">
+                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="{% url 'editapplyinsurance' ai.id %}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                <a class="dropdown-item" href="{% url 'deleteappliedinsurance' ai.id %}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}

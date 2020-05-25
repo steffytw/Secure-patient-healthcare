@@ -1,0 +1,101 @@
+{% extends 'secureHealth/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-8 offset-lg-2">
+    <h4 class="page-title">Add Insurance</h4>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-8 offset-lg-2">
+    <form action="{% url 'addinsurance' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.errors}}
+        <div class="row">
+           
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Username <span class="text-danger">*</span></label>
+                    <input class="form-control" name="username" type="text">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Email <span class="text-danger">*</span></label>
+                    <input class="form-control" name="email" type="email">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" name="password" type="password">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input class="form-control" name="confirm_Password" type="password">
+                </div>
+            </div>
+           
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Hospital name</label>
+                    <select class="select form-control" name="hospital_name">
+                        <option value="cm hospital">CM Hospital</option>
+                        <option value="kims hospital">Kims Hospital</option>
+                    </select>
+                    
+                </div>
+            </div>
+            
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Insurance Company</label>
+                    <select class="select form-control" name="company">
+                        <option>Select</option>
+                        <option value="Apollo Munich Health Insurance Company Limited">Apollo Munich Health Insurance Company Limited</option>
+                        <option value="Star Health & Allied Insurance Company Limited">Star Health & Allied Insurance Company Limited</option>
+                        <option value="ICICI Lombard General Insurance Company Limited">ICICI Lombard General Insurance Company Limited</option>
+                        <option value="Religare Health Insurance Company Limited">Religare Health Insurance Company Limited</option>
+                        <option value="Cigna TTK Health Insurance Company Limited">Cigna TTK Health Insurance Company Limited</option>
+                        <option value="Bajaj Allianz General Insurance Company Limited">Bajaj Allianz General Insurance Company Limited</option>
+                        <option value="New India Assurance Company Limited">New India Assurance Company Limited</option>
+                        
+                    </select>
+                </div>
+            </div>
+        
+        <div class="m-t-20 text-center">
+            <input type="submit"  class="btn btn-primary submit-btn" value="Save">
+            
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
+class insuranceCompanyLoginForm(forms.Form):
+    username = forms.CharField()
+    email = forms.EmailField(widget=forms.EmailInput)
+    password = forms.CharField(widget =forms.PasswordInput)
+    confirm_Password = forms.CharField(widget = forms.PasswordInput)
+    company_CHOICES = (
+        ('Apollo Munich Health Insurance Company Limited', 'Apollo Munich Health Insurance Company Limited'),
+        ('Star Health & Allied Insurance Company Limited', 'Star Health & Allied Insurance Company Limited'),
+        ('ICICI Lombard General Insurance Company Limited', 'ICICI Lombard General Insurance Company Limited'),
+        ('Religare Health Insurance Company Limited', 'Religare Health Insurance Company Limited'),
+        ('Cigna TTK Health Insurance Company Limited', 'Cigna TTK Health Insurance Company Limited'),
+        ('Bajaj Allianz General Insurance Company Limited', 'Bajaj Allianz General Insurance Company Limited'),
+        ('New India Assurance Company Limited', 'New India Assurance Company Limited'),  
+
+    )
+    company = forms.CharField(label='HCompany', widget=forms.Select(choices=company_CHOICES))
+    
+    Hospital_CHOICES = (
+        ('cm hospital', 'cm hospital'),
+        ('kims hospital', 'kims hospital'),
+    )
+    hospital_name = forms.CharField(label='Hospital Name', widget=forms.Select(choices=Hospital_CHOICES))
+    

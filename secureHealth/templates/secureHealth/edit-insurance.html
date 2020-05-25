@@ -1,0 +1,66 @@
+{% extends 'secureHealth/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-8 offset-lg-2">
+    <h4 class="page-title">Edit Insurance</h4>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-8 offset-lg-2">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.errors}}
+        <div class="row">
+           
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Username <span class="text-danger">*</span></label>
+                    <input class="form-control" name="username" value="{{insurancedatas.username}}" type="text">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Email <span class="text-danger">*</span></label>
+                    <input class="form-control" name="email" type="email" value="{{insurancedatas.email}}">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" name="password" type="password" value="{{insurancedatas.password}}">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input class="form-control" name="confirm_Password" type="password" value="{{insurancedatas.password}}">
+                </div>
+            </div>
+           
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Hospital name</label>
+                    <select class="select form-control" name="hospital_name" value="{{insurancedatas.hospital_name}}">
+                        <option value="{{insurancedatas.hospital_name}}" selected>{{insurancedatas.hospital_name}}</option>
+                        <option value="cm hospital">CM Hospital</option>
+                        <option value="kims hospital">Kims Hospital</option>
+                    </select>
+                    
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Insurance</label Company> <span class="text-danger">*</span></label>
+                    <input class="form-control" name="company" value="{{insurancedatas.company}}" type="text">
+                </div>
+            </div>
+
+            
+        
+        <div class="m-t-20 text-center">
+            <input type="submit"  class="btn btn-primary submit-btn" value="Update">
+            
+        </div>
+    </form>
+</div>
+{% endblock %}

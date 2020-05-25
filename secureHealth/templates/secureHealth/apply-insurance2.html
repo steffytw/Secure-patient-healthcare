@@ -1,0 +1,148 @@
+{% extends 'secureHealth/basepatient.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-8 offset-lg-2">
+    <h4 class="page-title">Apply insurance</h4>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-8 offset-lg-2">
+    <form action="{% url 'addapplyinsurance' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.errors}}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>First Name <span class="text-danger">*</span></label>
+                    <input class="form-control" name="first_name" type="text">
+                    
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input class="form-control" name="last_name" type="text">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Username <span class="text-danger">*</span></label>
+                    <input class="form-control" name="username" type="text">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Email <span class="text-danger">*</span></label>
+                    <input class="form-control" name="email" type="email">
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <div class="cal-icon">
+                        <input type="text" name="date_of_birth" class="form-control datetimepicker">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group gender-select">
+                    <label class="gen-label">Gender:</label>
+                    
+                    <div class="form-check-inline">
+                            <input type="radio" name="gender" class="form-check-input" value="male">male
+                            <input type="radio" name="gender" class="form-check-input" value="female">female
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text"  name="address" class="form-control ">
+                        </div>
+                    </div>
+                  
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text"  name="country" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" name="city" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>State/Province</label>
+                            <input type="text" name="state" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>District</label>
+                            <input type="text" name="district" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>Postal Code</label>
+                            <input type="text" name="pincode" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Mobile number </label>
+                    <input class="form-control" name="mobile_number" type="text">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Hospital name</label>
+                    <select class="select form-control" name="hospital_name">
+                        <option value="cm hospital">CM Hospital</option>
+                        <option value="kims hospital">Kims Hospital</option>
+                    </select>
+                    
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Insurance Company</label>
+                    <select class="select form-control" name="company">
+                        <option>Select</option>
+                        <option value="Apollo Munich Health Insurance Company Limited">Apollo Munich Health Insurance Company Limited</option>
+                        <option value="Star Health & Allied Insurance Company Limited">Star Health & Allied Insurance Company Limited</option>
+                        <option value="ICICI Lombard General Insurance Company Limited">ICICI Lombard General Insurance Company Limited</option>
+                        <option value="Religare Health Insurance Company Limited">Religare Health Insurance Company Limited</option>
+                        <option value="Cigna TTK Health Insurance Company Limited">Cigna TTK Health Insurance Company Limited</option>
+                        <option value="Bajaj Allianz General Insurance Company Limited">Bajaj Allianz General Insurance Company Limited</option>
+                        <option value="New India Assurance Company Limited">New India Assurance Company Limited</option>
+                        
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Company code</label>
+                <input type="text" name="company_code" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Insurance Number</label>
+                <input type="text" name="insurance_number" class="form-control">
+            </div>
+        
+        </div>
+        <div class="m-t-20 text-center">
+            <input type="submit"  class="btn btn-primary submit-btn" value="Save">
+            
+        </div>
+    </form>
+</div>
+{% endblock %}

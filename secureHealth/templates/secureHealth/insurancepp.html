@@ -1,0 +1,40 @@
+{% extends 'secureHealth/basepatient.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-sm-4 col-3">
+    <h4 class="page-title">Insurance Companies</h4>
+</div>
+
+</div>
+<div class="row">
+<div class="col-md-12">
+    <div class="table-responsive">
+        <table class="table table-border table-striped custom-table datatable mb-0">
+            <thead>
+                <tr>
+                    <th>Company_code</th>
+                    <th>Email</th>
+                    <th>Company</th>
+                    <th>Hospital</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for insurancedatas in  insurancedata%}
+                <tr>
+                    <td>{{insurancedatas.username}}</td>
+                    <td>{{insurancedatas.email}}</td>
+                    <td>{{insurancedatas.company}}</td>
+                    <td>{{insurancedatas.hospital_name}}</td>
+                    
+                    
+                </tr>
+                {% endfor %}
+               
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}
