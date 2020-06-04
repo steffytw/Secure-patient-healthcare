@@ -1396,7 +1396,7 @@ def editPatient12(request,id):
     
     first_name = enc_decr.decrypt(patient_detail.first_name)
     last_name = enc_decr.decrypt(patient_detail.last_name)
-    username = enc_decr.decrypt(patient_detail.username)
+    username = patient_detail.username
     email = enc_decr.decrypt(patient_detail.email)
     password= patient_detail.password
     confirm_Password = patient_detail.password
@@ -1410,8 +1410,12 @@ def editPatient12(request,id):
     pincode = enc_decr.decrypt(patient_detail.pincode)
     mobile_number = enc_decr.decrypt(patient_detail.mobile_number)
     status= enc_decr.decrypt(patient_detail.status)
-    decrypt_info = [first_name,last_name,username,email,password,confirm_Password,address,blood_group,gender,country,city,state,district,pincode,mobile_number,status]
+    insurance= enc_decr.decrypt(patient_detail.insurance)
+    doctor_name= patient_detail.doctor_name
+    hospital_name=patient_detail.hospital_name
+    decrypt_info = [first_name,last_name,username,email,password,confirm_Password,address,blood_group,gender,country,city,state,district,pincode,mobile_number,status,insurance,doctor_name,hospital_name]
     date_of_birth = patient_detail.date_of_birth
+    
     
 
     if request.method == "POST":
@@ -1432,6 +1436,9 @@ def editPatient12(request,id):
         pincode = request.POST['pincode']
         mobile_number = request.POST['mobile_number']
         status = request.POST['status']
+        insurance=request.POST['insurance']
+        doctor_name=request.POST['doctor_name']
+        hospital_name=request.POST['hospital_name']
 
         patient_detail = patientRegistrationDatas.objects.get(id=id)
 
@@ -1452,6 +1459,9 @@ def editPatient12(request,id):
         patient_detail.pincode = enc_decr.encrypt(pincode)
         patient_detail.mobile_number = enc_decr.encrypt(mobile_number)
         patient_detail.status= enc_decr.encrypt(status)
+        patient_detail.insurance= enc_decr.encrypt(insurance)
+        patient_detail.doctor_name= doctor_name
+        patient_detail.hospital_name= hospital_name
 
         patient_detail.save()
         return HttpResponse("Updated Patient Registration form successfully")
