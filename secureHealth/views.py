@@ -1242,6 +1242,7 @@ def editpatientRecord(request,id):
     potassium =  enc_decr.decrypt(patient.potassium)
     sodium =  enc_decr.decrypt(patient.sodium)
     message =  enc_decr.decrypt(patient.message)
+    
     decrypt_data = [name,age,blood_group,phone_number,haemoglobin,wbc,granulocyte,neutrophils,platelet_Count,cholestrol,triglycerides,tsh,bilirubin_total,globulins,blood_urea,albumin,potassium,sodium,message]
     if request.method == "POST":
         name = request.POST['name']
@@ -1264,6 +1265,7 @@ def editpatientRecord(request,id):
         potassium = request.POST['potassium']
         sodium = request.POST['sodium']
         message = request.POST['message']
+        
 
         patient = patientRecord.objects.get(id = id)
 
@@ -1321,7 +1323,11 @@ def editpatientRecordInfo(request,id):
     potassium =  enc_decr.decrypt(patient.potassium)
     sodium =  enc_decr.decrypt(patient.sodium)
     message =  enc_decr.decrypt(patient.message)
+    
+    
     decrypt_data = [name,age,blood_group,phone_number,haemoglobin,wbc,granulocyte,neutrophils,platelet_Count,cholestrol,triglycerides,tsh,bilirubin_total,globulins,blood_urea,albumin,potassium,sodium,message]
+    doctor_name=patient.doctor_name
+    
     if request.method == "POST":
         name = request.POST['name']
         blood_group = request.POST['blood_group']
@@ -1342,6 +1348,7 @@ def editpatientRecordInfo(request,id):
         potassium = request.POST['potassium']
         sodium = request.POST['sodium']
         message = request.POST['message']
+        doctor_name=request.POST['doctor_name']
 
         patient = patientRecord.objects.get(id = id)
 
@@ -1364,8 +1371,12 @@ def editpatientRecordInfo(request,id):
         patient.potassium =  enc_decr.encrypt(potassium)
         patient.sodium =  enc_decr.encrypt(sodium)
         patient.message =  enc_decr.encrypt(message)
+        patient.doctor_name=doctor_name
+        patient.save()
+        return HttpResponse('updated the details!!')
+        
 
-    return render(request,'secureHealth/edit-patient-record.html',{'patient':patient,'decrypt_data':decrypt_data})
+    return render(request,'secureHealth/edit-doctor-patientRecord.html',{'patient':patient,'decrypt_data':decrypt_data,'doctor_name':doctor_name})
 
 def patientOwnPage(request):
     username =request.session.get('username','0')
@@ -1444,7 +1455,7 @@ def editPatient12(request,id):
 
         patient_detail.first_name = enc_decr.encrypt(first_name)
         patient_detail.last_name = enc_decr.encrypt(last_name)
-        patient_detail.username = enc_decr.encrypt(username)
+        patient_detail.username = username
         patient_detail.email = enc_decr.encrypt(email)
         patient_detail.password= password
         patient_detail.confirm_Password = confirm_Password
